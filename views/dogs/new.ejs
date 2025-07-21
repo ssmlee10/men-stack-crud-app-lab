@@ -7,27 +7,36 @@
   </head>
   <body>
     <h1>Add a New Dog!</h1>
+
+    <!-- Dog Name -->
     <form action="/dogs" method="POST">
       <label for="name">Name:</label>
-      <input type="text" name="name" id="name" required/>
+      <input type="text" name="name" id="name" required />
 
+      <!-- Dog Breed -->
       <label for="breed">Breed:</label>
-      <input type="text" name="breed" id="breed" required/>
+      <input type="text" name="breed" id="breed" required />
 
+      <!-- Dog Age -->
       <label for="age">Age:</label>
       <input type="text" name="age" id="age" /><br /><br />
 
+      <!-- Dog Gender -->
       <label for="gender">Gender:</label>
       <select name="gender" id="gender" required>
         <option value="">-- Select Gender --</option>
         <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select><br /><br />
+        <option value="Female">Female</option></select
+      ><br /><br />
 
+      <!-- is Dog Adopted -->
       <label for="isAdopted">Dog is Adopted?</label>
       <input type="checkbox" name="isAdopted" id="isAdopted" />
       <br /><br />
+
+      <!-- Submit button -->
       <button type="submit">Add Dog</button>
     </form>
+    <p><a href="/dogs/">Back to Dogs</a></p>
   </body>
 </html>

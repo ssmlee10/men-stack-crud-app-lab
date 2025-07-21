@@ -37,6 +37,12 @@ app.get("/dogs/new", async (req, res) => {
   res.render("dogs/new.ejs");
 });
 
+// GET /dogs/:dogId
+app.get('/dogs/:dogId', async (req, res) => {
+    const foundDog = await Dog.findById(req.params.dogId);
+    res.render('dogs/show.ejs', {dogs: foundDog });
+})
+
 // POST /dogs
 app.post("/dogs", async (req, res) => {
   console.log(req.body);
@@ -46,7 +52,7 @@ app.post("/dogs", async (req, res) => {
     req.body.isAdopted = false;
   }
   await Dog.create(req.body);
-  res.redirect("/dogs/new");
+  res.redirect("/dogs");
 });
 
 app.listen(3000, () => {
