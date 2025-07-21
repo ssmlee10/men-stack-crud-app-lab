@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const dogSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    breed: { type: String, required: true },
+    name: String,
+    breed: String,
     age: Number,
     gender: { type: String, enum: ['Male', 'Female'] },
     isAdopted: Boolean
