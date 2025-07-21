@@ -24,6 +24,14 @@ app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
+// GET /dogs
+app.get('/dogs', async (req, res) => {
+    const allDogs = await Dog.find();
+    // check if we have all dogs in the terminal
+    // console.log(allDogs);
+    res.render('dogs/index.ejs', { dogs: allDogs });
+});
+
 // GET /dogs/new
 app.get("/dogs/new", async (req, res) => {
   res.render("dogs/new.ejs");

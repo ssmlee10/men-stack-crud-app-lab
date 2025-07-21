@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogs Index</title>
+  </head>
+  <body>
+    <h1>All Dogs</h1>
+    <ul>
+        <% dogs.forEach(dog => { %>
+            <li>Name: <%= dog.name %></li>
+            <li>Breed: <%= dog.breed %></li>
+            <li>Age: <%= dog.age %></li>
+        <% }); %>
+    </ul>
+  </body>
+</html>
