@@ -55,8 +55,16 @@ app.post("/dogs", async (req, res) => {
   } else {
     req.body.isPottyTrained = false;
   }
+
   await Dog.create(req.body);
   res.redirect("/dogs");
+});
+
+// DELETE route
+app.delete('/dogs/:dogId', async (req, res) => {
+    // res.send('this is the delete route');
+    await Dog.findByIdAndDelete(req.params.dogId);
+    res.redirect('/dogs');
 });
 
 app.listen(3000, () => {
