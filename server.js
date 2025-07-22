@@ -2,6 +2,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
+const methodOverride = require('method-override');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -18,6 +20,8 @@ const Dog = require("./models/dog.js");
 
 // adding middleware for app
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+app.use(morgan("dev"));
 
 // GET /
 app.get("/", async (req, res) => {
