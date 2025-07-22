@@ -67,6 +67,14 @@ app.delete('/dogs/:dogId', async (req, res) => {
     res.redirect('/dogs');
 });
 
+// GET localhost:3000/dogs/:dogId/edit
+app.get('/dogs/:dogId/edit', async (req, res) => {
+    const foundDog = await Dog.findById(req.params.dogId);
+    res.render('dogs/edit.ejs', {
+        dog: foundDog,
+    });
+});
+
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
