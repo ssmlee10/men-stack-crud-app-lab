@@ -40,16 +40,16 @@ app.get("/dogs/new", async (req, res) => {
 // GET /dogs/:dogId
 app.get('/dogs/:dogId', async (req, res) => {
     const foundDog = await Dog.findById(req.params.dogId);
-    res.render('dogs/show.ejs', {dogs: foundDog });
+    res.render('dogs/show.ejs', {dog: foundDog });
 })
 
 // POST /dogs
 app.post("/dogs", async (req, res) => {
   console.log(req.body);
-  if (req.body.isAdopted === "on") {
-    req.body.isAdopted = true;
+  if (req.body.isPottyTrained === "on") {
+    req.body.isPottyTrained = true;
   } else {
-    req.body.isAdopted = false;
+    req.body.isPottyTrained = false;
   }
   await Dog.create(req.body);
   res.redirect("/dogs");

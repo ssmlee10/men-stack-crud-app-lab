@@ -5,7 +5,7 @@ const dogSchema = new mongoose.Schema({
     breed: String,
     age: Number,
     gender: { type: String, enum: ['Male', 'Female'] },
-    isAdopted: Boolean
+    isPottyTrained: Boolean
 });
 
 // create model
