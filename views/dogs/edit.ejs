@@ -1,9 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= dog.name %></title>
+</head>
 <body>
   <!-- update the header -->
   <h1>Edit <%= dog.name %></h1>
-  <form action="//dogs/<%=dog._id%>?_method=PUT" method="POST">
+  <form action="/dogs/<%=dog._id%>?_method=PUT" method="POST">
+
     <!-- Dog Name -->
-    <form action="/dogs" method="POST">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" value="<%= dog.name %>" required />
 
@@ -31,5 +38,6 @@
       <!-- Submit button -->
       <button type="submit">Update Dog</button>
   </form>
-  <a href="/dogs">Back to Doggie List</a>
+  <p><a href="/dogs">Back to Doggie List</a></p>
 </body>
+</html>

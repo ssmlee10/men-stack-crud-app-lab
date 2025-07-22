@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require('method-override');
@@ -30,7 +31,7 @@ app.get("/", async (req, res) => {
 
 // GET /dogs
 app.get('/dogs', async (req, res) => {
-    const allDogs = await Dog.find();
+    const allDogs = await Dog.find({});
     // check if we have all dogs in the terminal
     // console.log(allDogs);
     res.render('dogs/index.ejs', { dogs: allDogs });
@@ -42,14 +43,14 @@ app.get("/dogs/new", async (req, res) => {
 });
 
 // GET /dogs/:dogId
-app.get('/dogs/:dogId', async (req, res) => {
-    const foundDog = await Dog.findById(req.params.dogId);
-    res.render('dogs/show.ejs', {dog: foundDog });
-})
+app.get("/dogs/:dogId", async (req, res) => {
+  const foundDog = await Dog.findById(req.params.dogId);
+  console.log(foundDog);
+  res.render("dogs/show.ejs", { dog: foundDog });
+});
 
 // POST /dogs
 app.post("/dogs", async (req, res) => {
-  console.log(req.body);
   if (req.body.isPottyTrained === "on") {
     req.body.isPottyTrained = true;
   } else {
@@ -57,12 +58,11 @@ app.post("/dogs", async (req, res) => {
   }
 
   await Dog.create(req.body);
-  res.redirect("/dogs");
+  res.redirect('/dogs');
 });
 
 // DELETE route
 app.delete('/dogs/:dogId', async (req, res) => {
-    // res.send('this is the delete route');
     await Dog.findByIdAndDelete(req.params.dogId);
     res.redirect('/dogs');
 });
@@ -73,6 +73,21 @@ app.get('/dogs/:dogId/edit', async (req, res) => {
     res.render('dogs/edit.ejs', {
         dog: foundDog,
     });
+});
+
+// setup update route
+app.put('/dogs/:dogId', async (req, res) => {
+    if (req.body.isPottyTrained === 'on') {
+        req.body.isPottyTrained = true;
+    } else {
+        req.body.isPottyTrained = false;
+    }
+
+    // update the dog in the database
+    await Dog.findByIdAndUpdate(req.params.dogId, req.body);
+
+    // redirect to the dog's show page to see the updates
+    res.redirect(`/dogs/${req.params.dogId}`);
 });
 
 app.listen(3000, () => {
